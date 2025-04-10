@@ -21,3 +21,16 @@ test('deepMerge with overlap ', () => {
   const result = deepMerge(target, source)
   expect(result).toEqual({ a: { b: 3 }, c: 4 })
 })
+
+test('deepMerge with null source', () => {
+  const target = { a: 1, b: 2 }
+  const source = null
+  const result = deepMerge(target, source)
+  expect(result).toEqual({ a: 1, b: 2 })
+})
+
+test('deepMerge an object and a string, throws error   ', () => {
+  const target = { a: 1, b: 2 }
+  const source = 'string'
+  expect(() => deepMerge(target, source)).toThrowError('Source must be an object or null')
+})

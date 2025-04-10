@@ -4,7 +4,11 @@
 // If a property exists in both objects and is not an object, the source value overwrites the target value.
 // If the source is null or undefined, it returns the target object unchanged.
 // If the target is null or undefined, it returns the source object.
+// if the target or source are differnt types, throw an error
 export function deepMerge(target, source) {
+  if (source !== null && typeof source !== 'object') {
+    throw new Error('Source must be an object or null')
+  }
   if (source == null) {
     return target
   }
